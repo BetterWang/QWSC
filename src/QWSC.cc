@@ -63,8 +63,8 @@ QWSC::QWSC(const edm::ParameterSet& iConfig)
 	trackWeight_( iConfig.getUntrackedParameter<edm::InputTag>("trackWeight") ),
 	vertexTag_( iConfig.getUntrackedParameter<edm::InputTag>("vertex") ),
 	centralityTag_( iConfig.getUntrackedParameter<edm::InputTag>("centrality") ),
-	NoffTag( iConfig.getUntrackedParameter<edm::InputTag>("Noff", std::string("NA")) ),
-	harmonics_( iConfig.getUntrackedParameter<std::vector<int> >("harmonics") ),
+	NoffTag_( iConfig.getUntrackedParameter<edm::InputTag>("Noff", std::string("NA")) ),
+	harmonics_( iConfig.getUntrackedParameter<std::vector<int> >("harmonics") )
 {
 	//now do what ever initialization is needed
 	minvz_ = iConfig.getUntrackedParameter<double>("minvz", -15.);
@@ -129,12 +129,12 @@ QWSC::analyze(const edm::Event& iEvent, const edm::EventSetup& iSetup)
 	Handle<std::vector<double> >	hPhi;
 	Handle<std::vector<double> >	hWeight;
 
-	iEvent.getByLable(trackEta_,	hEta);
-	iEvent.getByLable(trackPt_,	hPi);
-	iEvent.getByLable(trackPhi_,	hPhi);
-	iEvent.getByLable(trackWeight_, hWeight);
+	iEvent.getByLabel(trackEta_,	hEta);
+	iEvent.getByLabel(trackPt_,	hPt);
+	iEvent.getByLabel(trackPhi_,	hPhi);
+	iEvent.getByLabel(trackWeight_, hWeight);
 
-	int sz = hEta->size();
+	unsigned int sz = hEta->size();
 	if ( sz == 0 ) {
 		cout << " --> sz = 0 empty event" << endl;
 	}
@@ -163,13 +163,13 @@ QWSC::analyze(const edm::Event& iEvent, const edm::EventSetup& iSetup)
 	}
 	int Cent = *(ch.product());
 
-	for ( int i = 0; i < sz; i++ ) {
-		q.fill(hPhi[i], hWeight[i]);
+	for ( unsigned int i = 0; i < sz; i++ ) {
+		q_.fill((*hPhi)[i], (*hWeight)[i]);
 	}
 
 	correlations::Result r;
 	for ( int n = 1; n < 7; n++ ) {
-		r = cq_->calculate(harmonics_.size(), hc);
+		r = cq_->calculate(harmonics_.size(), hc_);
 	}
 
 	// RFP
@@ -177,7 +177,7 @@ QWSC::analyze(const edm::Event& iEvent, const edm::EventSetup& iSetup)
 	iQ = r.sum().imag();
 	wQ = r.weight();
 
-	gNoff = ch;
+	gNoff = Cent;
 	gMult = sz;
 
 	trV->Fill();
@@ -189,9 +189,9 @@ QWSC::analyze(const edm::Event& iEvent, const edm::EventSetup& iSetup)
 void
 QWSC::initQ()
 {
-	int sz = harmonics_.size();
+	unsigned int sz = harmonics_.size();
 	hc_ = correlations::HarmonicVector(sz);
-	for ( int i = 0; i < sz; i++ ) {
+	for ( unsigned int i = 0; i < sz; i++ ) {
 		hc_[i] = harmonics_[i];
 	}
 
