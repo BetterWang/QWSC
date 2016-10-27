@@ -63,7 +63,6 @@ QWSC::QWSC(const edm::ParameterSet& iConfig)
 	trackWeight_( iConfig.getUntrackedParameter<edm::InputTag>("trackWeight") ),
 	vertexZ_( iConfig.getUntrackedParameter<edm::InputTag>("vertexZ") ),
 	centralityTag_( iConfig.getUntrackedParameter<edm::InputTag>("centrality") ),
-	NoffTag_( iConfig.getUntrackedParameter<edm::InputTag>("Noff", std::string("NA")) ),
 	harmonics_( iConfig.getUntrackedParameter<std::vector<int> >("harmonics") )
 {
 	//now do what ever initialization is needed
@@ -75,8 +74,6 @@ QWSC::QWSC(const edm::ParameterSet& iConfig)
 
 	minpt_ = iConfig.getUntrackedParameter<double>("minpt", 0.3);
 	maxpt_ = iConfig.getUntrackedParameter<double>("maxpt", 0.3);
-
-	bCent_ = iConfig.getUntrackedParameter<bool>("bCent", false);
 
 	cmode_ = iConfig.getUntrackedParameter<int>("cmode", 1);
 	nvtx_ = iConfig.getUntrackedParameter<int>("nvtx", 100);
@@ -150,11 +147,7 @@ QWSC::analyze(const edm::Event& iEvent, const edm::EventSetup& iSetup)
 	}
 
 	edm::Handle<int> ch;
-	if ( bCent_ ) {
-		iEvent.getByLabel(centralityTag_, ch);
-	} else {
-		iEvent.getByLabel(NoffTag_, ch);
-	}
+	iEvent.getByLabel(centralityTag_, ch);
 	int Cent = *(ch.product());
 
 	for ( unsigned int i = 0; i < sz; i++ ) {
@@ -162,9 +155,7 @@ QWSC::analyze(const edm::Event& iEvent, const edm::EventSetup& iSetup)
 	}
 
 	correlations::Result r;
-	for ( int n = 1; n < 7; n++ ) {
-		r = cq_->calculate(harmonics_.size(), hc_);
-	}
+	r = cq_->calculate(harmonics_.size(), hc_);
 
 	// RFP
 	rQ = r.sum().real();

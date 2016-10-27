@@ -60,14 +60,12 @@ class QWSC : public edm::EDAnalyzer {
 		edm::InputTag					vertexZ_;
 
 		edm::InputTag					centralityTag_;
-		edm::InputTag					NoffTag_;
 
 	/////////////////////////////////////////////
 		double	minvz_, maxvz_;
 		double	mineta_, maxeta_;
 		double	minpt_, maxpt_;
 
-		bool		bCent_;
 		unsigned int	nvtx_;
 		int		cmode_;
 		std::vector<int>	harmonics_;
