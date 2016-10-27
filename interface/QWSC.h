@@ -57,8 +57,8 @@ class QWSC : public edm::EDAnalyzer {
 		edm::InputTag					trackPt_;
 		edm::InputTag					trackPhi_;
 		edm::InputTag					trackWeight_;
+		edm::InputTag					vertexZ_;
 
-		edm::InputTag					vertexTag_;
 		edm::InputTag					centralityTag_;
 		edm::InputTag					NoffTag_;
 
