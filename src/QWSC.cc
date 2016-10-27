@@ -144,7 +144,7 @@ QWSC::analyze(const edm::Event& iEvent, const edm::EventSetup& iSetup)
 		cout << " --> inconsistency" << endl;
 	}
 
-	double vz = *(hVz[0]);
+	double vz = (*hVz)[0];
 	if (fabs(vz) < minvz_ || fabs(vz) > maxvz_) {
 		return;
 	}
