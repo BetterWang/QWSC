@@ -83,6 +83,7 @@ QWSC::QWSC(const edm::ParameterSet& iConfig)
 	consumes<std::vector<double> >(trackPhi_);
 	consumes<std::vector<double> >(trackWeight_);
 	consumes<std::vector<double> >(vertexZ_);
+	consumes<int>(centralityTag_);
 
 	gNoff = 0;
 	gMult = 0;
