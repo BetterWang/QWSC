@@ -78,12 +78,12 @@ QWSC::QWSC(const edm::ParameterSet& iConfig)
 	cmode_ = iConfig.getUntrackedParameter<int>("cmode", 1);
 	nvtx_ = iConfig.getUntrackedParameter<int>("nvtx", 100);
 
-	consumes<std::vector<double> >(trackEta_);
-	consumes<std::vector<double> >(trackPt_);
-	consumes<std::vector<double> >(trackPhi_);
-	consumes<std::vector<double> >(trackWeight_);
-	consumes<std::vector<double> >(vertexZ_);
-	consumes<int>(centralityTag_);
+//	consumes<std::vector<double> >(trackEta_);
+//	consumes<std::vector<double> >(trackPt_);
+//	consumes<std::vector<double> >(trackPhi_);
+//	consumes<std::vector<double> >(trackWeight_);
+//	consumes<std::vector<double> >(vertexZ_);
+//	consumes<int>(centralityTag_);
 
 	gNoff = 0;
 	gMult = 0;
