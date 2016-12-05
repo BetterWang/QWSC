@@ -101,35 +101,35 @@ process.hltHM280.throw = cms.bool(False)
 process.load('RecoHI.HiCentralityAlgos.CentralityFilter_cfi')
 process.ppNoffFilter120 = process.centralityFilter.clone(
 		selectedBins = cms.vint32(
-			*range(120, 600)
+			*range(120, 150)
 			),
 		BinLabel = cms.InputTag("Noff")
 		)
 
 process.ppNoffFilter150 = process.centralityFilter.clone(
 		selectedBins = cms.vint32(
-			*range(150, 600)
+			*range(150, 185)
 			),
 		BinLabel = cms.InputTag("Noff")
 		)
 
 process.ppNoffFilter185 = process.centralityFilter.clone(
 		selectedBins = cms.vint32(
-			*range(185, 600)
+			*range(185, 220)
 			),
 		BinLabel = cms.InputTag("Noff")
 		)
 
 process.ppNoffFilter220 = process.centralityFilter.clone(
 		selectedBins = cms.vint32(
-			*range(220, 600)
+			*range(220, 250)
 			),
 		BinLabel = cms.InputTag("Noff")
 		)
 
 process.ppNoffFilter250 = process.centralityFilter.clone(
 		selectedBins = cms.vint32(
-			*range(250, 600)
+			*range(250, 280)
 			),
 		BinLabel = cms.InputTag("Noff")
 		)
@@ -194,6 +194,25 @@ process.QWSC5_6_5_6 = process.QWSC2_3_2_3.clone(
 		harmonics = cms.untracked.vint32(5, 6, -5, -6)
 		)
 
+process.QWSC2_2 = process.QWSC2_3_2_3.clone(
+		harmonics = cms.untracked.vint32(2, -2)
+		)
+
+process.QWSC3_3 = process.QWSC2_3_2_3.clone(
+		harmonics = cms.untracked.vint32(3, -3)
+		)
+
+process.QWSC4_4 = process.QWSC2_3_2_3.clone(
+		harmonics = cms.untracked.vint32(4, -4)
+		)
+
+process.QWSC5_5 = process.QWSC2_3_2_3.clone(
+		harmonics = cms.untracked.vint32(5, -5)
+		)
+
+process.QWSC6_6 = process.QWSC2_3_2_3.clone(
+		harmonics = cms.untracked.vint32(6, -6)
+		)
 
 process.TFileService = cms.Service("TFileService",
     fileName = cms.string('sc.root')
@@ -261,14 +280,14 @@ process.vectPtW250 = process.vectPtW.clone()
 process.vectPtW280 = process.vectPtW.clone()
 
 
-process.mon120 = cms.Sequence( process.hNoff * process.vectPhi120 * process.vectPhiW120 * process.vectEta120 * process.vectEtaW120 * process.vectPt120 * process.vectPtW120)
-process.mon150 = cms.Sequence( process.hNoff * process.vectPhi150 * process.vectPhiW150 * process.vectEta150 * process.vectEtaW150 * process.vectPt150 * process.vectPtW150)
-process.mon185 = cms.Sequence( process.hNoff * process.vectPhi185 * process.vectPhiW185 * process.vectEta185 * process.vectEtaW185 * process.vectPt185 * process.vectPtW185)
-process.mon220 = cms.Sequence( process.hNoff * process.vectPhi220 * process.vectPhiW220 * process.vectEta220 * process.vectEtaW220 * process.vectPt220 * process.vectPtW220)
-process.mon250 = cms.Sequence( process.hNoff * process.vectPhi250 * process.vectPhiW250 * process.vectEta250 * process.vectEtaW250 * process.vectPt250 * process.vectPtW250)
-process.mon280 = cms.Sequence( process.hNoff * process.vectPhi280 * process.vectPhiW280 * process.vectEta280 * process.vectEtaW280 * process.vectPt280 * process.vectPtW280)
+process.mon120 = cms.Sequence( process.histNoff * process.vectPhi120 * process.vectPhiW120 * process.vectEta120 * process.vectEtaW120 * process.vectPt120 * process.vectPtW120)
+process.mon150 = cms.Sequence( process.histNoff * process.vectPhi150 * process.vectPhiW150 * process.vectEta150 * process.vectEtaW150 * process.vectPt150 * process.vectPtW150)
+process.mon185 = cms.Sequence( process.histNoff * process.vectPhi185 * process.vectPhiW185 * process.vectEta185 * process.vectEtaW185 * process.vectPt185 * process.vectPtW185)
+process.mon220 = cms.Sequence( process.histNoff * process.vectPhi220 * process.vectPhiW220 * process.vectEta220 * process.vectEtaW220 * process.vectPt220 * process.vectPtW220)
+process.mon250 = cms.Sequence( process.histNoff * process.vectPhi250 * process.vectPhiW250 * process.vectEta250 * process.vectEtaW250 * process.vectPt250 * process.vectPtW250)
+process.mon280 = cms.Sequence( process.histNoff * process.vectPhi280 * process.vectPhiW280 * process.vectEta280 * process.vectEtaW280 * process.vectPt280 * process.vectPtW280)
 
-process.ana = cms.Sequence( process.QWSC2_3_2_3 * process.QWSC2_4_2_4 * process.QWSC3_4_3_4 * process.QWSC2_5_2_5 * process.QWSC3_5_3_5 * process.QWSC4_5_4_5 * process.QWSC2_6_2_6 * process.QWSC3_6_3_6 * process.QWSC4_6_4_6 * process.QWSC5_6_5_6)
+process.ana = cms.Sequence( process.QWSC2_3_2_3 * process.QWSC2_4_2_4 * process.QWSC3_4_3_4 * process.QWSC2_5_2_5 * process.QWSC3_5_3_5 * process.QWSC4_5_4_5 * process.QWSC2_6_2_6 * process.QWSC3_6_3_6 * process.QWSC4_6_4_6 * process.QWSC5_6_5_6 * process.QWSC2_2 * process.QWSC3_3 * process.QWSC4_4 * process.QWSC5_5 * process.QWSC6_6)
 
 process.path120 = cms.Path(process.hltHM120*process.eventSelection*process.Noff*process.ppNoffFilter120*process.QWEvent*process.ana * process.mon120)
 process.path150 = cms.Path(process.hltHM150*process.eventSelection*process.Noff*process.ppNoffFilter150*process.QWEvent*process.ana * process.mon150)
