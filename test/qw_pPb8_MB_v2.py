@@ -126,7 +126,7 @@ process.NoScraping = cms.EDFilter("FilterOutScraping",
 )
 
 process.load("HeavyIonsAnalysis.Configuration.hfCoincFilter_cff")
-process.load("HeavyIonsAnalysis.Configuration.pileUpFilter_cff")
+process.load("HeavyIonsAnalysis.EventAnalysis.pileUpFilter_cff")
 
 process.eventSelection = cms.Sequence(process.hfCoincFilter * process.PAprimaryVertexFilter * process.NoScraping * process.olvFilter_pPb8TeV_dz1p0)
 
