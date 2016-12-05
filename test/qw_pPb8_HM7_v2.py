@@ -180,8 +180,6 @@ process.TFileService = cms.Service("TFileService",
     fileName = cms.string('sc.root')
 )
 
-process.load("HeavyIonsAnalysis.VertexAnalysis.PAPileUpVertexFilter_cff")
-
 process.PAprimaryVertexFilter = cms.EDFilter("VertexSelector",
     src = cms.InputTag("offlinePrimaryVertices"),
     cut = cms.string("!isFake && abs(z) <= 25 && position.Rho <= 2 && tracksSize >= 2"),
@@ -195,7 +193,10 @@ process.NoScraping = cms.EDFilter("FilterOutScraping",
  thresh = cms.untracked.double(0.25)
 )
 
-process.eventSelection = cms.Sequence(process.PAprimaryVertexFilter * process.NoScraping * process.pileupVertexFilterCutGplus)
+process.load("HeavyIonsAnalysis.Configuration.hfCoincFilter_cff")
+process.load("HeavyIonsAnalysis.EventAnalysis.pileUpFilter_cff")
+
+process.eventSelection = cms.Sequence(process.hfCoincFilter * process.PAprimaryVertexFilter * process.NoScraping * process.olvFilter_pPb8TeV_dz1p0)
 
 process.load('pPb_HM_eff')
 
