@@ -11,6 +11,7 @@ test/*
 !test/qw*.py
 !test/crab_*.py
 !test/run*.sh
+!test/pPb_HM_eff.py
 runConfig/*
 !runConfig/qw*.py
 !runConfig/crab_*.py
