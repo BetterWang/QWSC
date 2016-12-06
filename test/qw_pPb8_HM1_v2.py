@@ -244,8 +244,8 @@ process.path185 = cms.Path(process.hltHM185*process.eventSelection*process.Noff*
 process.path250 = cms.Path(process.hltHM250*process.eventSelection*process.Noff*process.ppNoffFilter250*process.QWEvent*process.ana * process.mon250)
 
 process.schedule = cms.Schedule(
-	process.path120,
-	process.path150,
-#	process.path185,
+#	process.path120,
+#	process.path150,
+	process.path185,
 #	process.path250,
 )

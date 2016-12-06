@@ -119,6 +119,7 @@ process.QWSC2_3_2_3 = cms.EDAnalyzer('QWSC',
 		nvtx = cms.untracked.int32(100),
 		harmonics = cms.untracked.vint32(2, 3, -2, -3)
 		)
+process.QWSC2_3_2_3.minvz = cms.untracked.double(3)
 
 process.QWSC2_4_2_4 = process.QWSC2_3_2_3.clone(
 		harmonics = cms.untracked.vint32(2, 4, -2, -4)
@@ -199,6 +200,7 @@ process.load("HeavyIonsAnalysis.EventAnalysis.pileUpFilter_cff")
 process.eventSelection = cms.Sequence(process.hfCoincFilter * process.PAprimaryVertexFilter * process.NoScraping * process.olvFilter_pPb8TeV_dz1p0)
 
 process.load('pPb_HM_eff')
+process.QWEvent.fweight = cms.untracked.InputTag('Hijing_8TeV_MB_eff_v4_wide.root')
 
 process.vectPhi120 = process.vectPhi.clone()
 process.vectPhi150 = process.vectPhi.clone()
@@ -238,14 +240,14 @@ process.mon250 = cms.Sequence( process.histNoff * process.vectPhi250 * process.v
 
 process.ana = cms.Sequence( process.QWSC2_3_2_3 * process.QWSC2_4_2_4 * process.QWSC3_4_3_4 * process.QWSC2_5_2_5 * process.QWSC3_5_3_5 * process.QWSC4_5_4_5 * process.QWSC2_6_2_6 * process.QWSC3_6_3_6 * process.QWSC4_6_4_6 * process.QWSC5_6_5_6 * process.QWSC2_2 * process.QWSC3_3 * process.QWSC4_4 * process.QWSC5_5 * process.QWSC6_6)
 
-process.path120 = cms.Path(process.hltHM120*process.eventSelection*process.Noff*process.ppNoffFilter120*process.QWEvent*process.ana * process.mon120)
-process.path150 = cms.Path(process.hltHM150*process.eventSelection*process.Noff*process.ppNoffFilter150*process.QWEvent*process.ana * process.mon150)
-process.path185 = cms.Path(process.hltHM185*process.eventSelection*process.Noff*process.ppNoffFilter185*process.QWEvent*process.ana * process.mon185)
-process.path250 = cms.Path(process.hltHM250*process.eventSelection*process.Noff*process.ppNoffFilter250*process.QWEvent*process.ana * process.mon250)
+process.path120 = cms.Path(process.hltHM120*process.eventSelection*process.Noff*process.ppNoffFilter120*process.QWEvent*process.ana )
+process.path150 = cms.Path(process.hltHM150*process.eventSelection*process.Noff*process.ppNoffFilter150*process.QWEvent*process.ana )
+process.path185 = cms.Path(process.hltHM185*process.eventSelection*process.Noff*process.ppNoffFilter185*process.QWEvent*process.ana )
+process.path250 = cms.Path(process.hltHM250*process.eventSelection*process.Noff*process.ppNoffFilter250*process.QWEvent*process.ana )
 
 process.schedule = cms.Schedule(
-	process.path120,
-	process.path150,
+#	process.path120,
+#	process.path150,
 #	process.path185,
-#	process.path250,
+	process.path250,
 )

@@ -5,7 +5,7 @@ from httplib import HTTPException
 
 config = config()
 
-config.General.requestName = 'PAMB1_SC_eff_v2'
+config.General.requestName = 'PAMB1_SC_eff_v4'
 config.General.workArea = 'CrabArea'
 config.General.transferOutputs = True
 config.General.transferLogs = True
@@ -32,7 +32,7 @@ except ClientException as cle:
 
 
 ### 2
-config.General.requestName = 'PAMB2_SC_eff_v2'
+config.General.requestName = 'PAMB2_SC_eff_v4'
 config.Data.inputDataset = '/PAMinimumBias2/PARun2016C-PromptReco-v1/AOD'
 try:
         crabCommand('submit', config = config)
@@ -43,7 +43,7 @@ except ClientException as cle:
 
 
 #### 3
-#config.General.requestName = 'PAMB3_SC_eff_v2'
+#config.General.requestName = 'PAMB3_SC_eff_v4'
 #config.Data.inputDataset = '/PAMinimumBias3/PARun2016C-PromptReco-v1/AOD'
 #try:
 #        crabCommand('submit', config = config)
@@ -53,7 +53,7 @@ except ClientException as cle:
 #        print "Failed submitting task: %s" % (cle)
 #
 #### 4
-#config.General.requestName = 'PAMB4_SC_eff_v2'
+#config.General.requestName = 'PAMB4_SC_eff_v4'
 #config.Data.inputDataset = '/PAMinimumBias4/PARun2016C-PromptReco-v1/AOD'
 #try:
 #        crabCommand('submit', config = config)
@@ -63,7 +63,7 @@ except ClientException as cle:
 #        print "Failed submitting task: %s" % (cle)
 #
 #### 5
-#config.General.requestName = 'PAMB5_SC_eff_v2'
+#config.General.requestName = 'PAMB5_SC_eff_v4'
 #config.Data.inputDataset = '/PAMinimumBias5/PARun2016C-PromptReco-v1/AOD'
 #try:
 #        crabCommand('submit', config = config)
@@ -73,7 +73,7 @@ except ClientException as cle:
 #        print "Failed submitting task: %s" % (cle)
 #
 #### 6
-#config.General.requestName = 'PAMB6_SC_eff_v2'
+#config.General.requestName = 'PAMB6_SC_eff_v4'
 #config.Data.inputDataset = '/PAMinimumBias6/PARun2016C-PromptReco-v1/AOD'
 #try:
 #        crabCommand('submit', config = config)
@@ -83,7 +83,7 @@ except ClientException as cle:
 #        print "Failed submitting task: %s" % (cle)
 #
 #### 7
-#config.General.requestName = 'PAMB7_SC_eff_v2'
+#config.General.requestName = 'PAMB7_SC_eff_v4'
 #config.Data.inputDataset = '/PAMinimumBias7/PARun2016C-PromptReco-v1/AOD'
 #try:
 #        crabCommand('submit', config = config)
@@ -93,7 +93,7 @@ except ClientException as cle:
 #        print "Failed submitting task: %s" % (cle)
 #
 #### 8
-#config.General.requestName = 'PAMB8_SC_eff_v2'
+#config.General.requestName = 'PAMB8_SC_eff_v4'
 #config.Data.inputDataset = '/PAMinimumBias8/PARun2016C-PromptReco-v1/AOD'
 #try:
 #        crabCommand('submit', config = config)
