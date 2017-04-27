@@ -135,12 +135,12 @@ QWSC::analyze(const edm::Event& iEvent, const edm::EventSetup& iSetup)
 	iEvent.getByLabel(vertexZ_, 	hVz);
 
 	unsigned int sz = hEta->size();
-	if ( sz == 0 ) {
-		cout << " --> sz = 0 empty event" << endl;
-	}
-	if ( sz != hPt->size() or sz != hPhi->size() or sz != hWeight->size() ) {
-		cout << " --> inconsistency" << endl;
-	}
+//	if ( sz == 0 ) {
+//		cout << " --> sz = 0 empty event" << endl;
+//	}
+//	if ( sz != hPt->size() or sz != hPhi->size() or sz != hWeight->size() ) {
+//		cout << " --> inconsistency" << endl;
+//	}
 
 	double vz = (*hVz)[0];
 	if (fabs(vz) < minvz_ || fabs(vz) > maxvz_) {

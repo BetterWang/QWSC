@@ -52,6 +52,62 @@ process.QWSC2_3_2_3 = cms.EDAnalyzer('QWSC',
 		)
 
 
+process.QWSC2_4_2_4 = process.QWSC2_3_2_3.clone(
+		harmonics = cms.untracked.vint32(2, 4, -2, -4)
+		)
+
+process.QWSC2_5_2_5 = process.QWSC2_3_2_3.clone(
+		harmonics = cms.untracked.vint32(2, 5, -2, -5)
+		)
+
+process.QWSC2_6_2_6 = process.QWSC2_3_2_3.clone(
+		harmonics = cms.untracked.vint32(2, 6, -2, -6)
+		)
+
+process.QWSC3_4_3_4 = process.QWSC2_3_2_3.clone(
+		harmonics = cms.untracked.vint32(3, 4, -3, -4)
+		)
+
+process.QWSC3_5_3_5 = process.QWSC2_3_2_3.clone(
+		harmonics = cms.untracked.vint32(3, 5, -3, -5)
+		)
+
+process.QWSC3_6_3_6 = process.QWSC2_3_2_3.clone(
+		harmonics = cms.untracked.vint32(3, 6, -3, -6)
+		)
+
+process.QWSC4_5_4_5 = process.QWSC2_3_2_3.clone(
+		harmonics = cms.untracked.vint32(4, 5, -4, -5)
+		)
+
+process.QWSC4_6_4_6 = process.QWSC2_3_2_3.clone(
+		harmonics = cms.untracked.vint32(4, 6, -4, -6)
+		)
+
+process.QWSC5_6_5_6 = process.QWSC2_3_2_3.clone(
+		harmonics = cms.untracked.vint32(5, 6, -5, -6)
+		)
+
+process.QWSC2_2 = process.QWSC2_3_2_3.clone(
+		harmonics = cms.untracked.vint32(2, -2)
+		)
+
+process.QWSC3_3 = process.QWSC2_3_2_3.clone(
+		harmonics = cms.untracked.vint32(3, -3)
+		)
+
+process.QWSC4_4 = process.QWSC2_3_2_3.clone(
+		harmonics = cms.untracked.vint32(4, -4)
+		)
+
+process.QWSC5_5 = process.QWSC2_3_2_3.clone(
+		harmonics = cms.untracked.vint32(5, -5)
+		)
+
+process.QWSC6_6 = process.QWSC2_3_2_3.clone(
+		harmonics = cms.untracked.vint32(6, -6)
+		)
+
 process.TFileService = cms.Service("TFileService",
     fileName = cms.string('sc.root')
 )
@@ -80,8 +136,21 @@ process.ppRecoCentFilter = process.centralityFilter.clone(
                 BinLabel = cms.InputTag("centralityBins")
                 )
 
-process.path2_3_2_3 = cms.Path(process.eventSelection*process.centralityBins*process.ppRecoCentFilter*process.Noff*process.QWEvent*process.QWSC2_3_2_3)
+
+process.NoffFilter = process.centralityFilter.clone(
+	selectedBins = cms.vint32(
+		*range(2, 500)
+		),
+		BinLabel = cms.InputTag("Noff")
+		)
+
+process.ana = cms.Sequence( process.QWSC2_3_2_3 * process.QWSC2_4_2_4 * process.QWSC3_4_3_4 * process.QWSC2_5_2_5 * process.QWSC3_5_3_5 * process.QWSC4_5_4_5 * process.QWSC2_6_2_6 * process.QWSC3_6_3_6 * process.QWSC4_6_4_6 * process.QWSC5_6_5_6 * process.QWSC2_2 * process.QWSC3_3 * process.QWSC4_4 * process.QWSC5_5 * process.QWSC6_6)
+
+process.pathSC = cms.Path(process.eventSelection*process.centralityBins*process.ppRecoCentFilter*process.Noff*process.NoffFilter*process.QWEvent*process.ana)
+
+process.path = cms.Path(process.eventSelection*process.centralityBins*process.ppRecoCentFilter*process.Noff*process.NoffFilter*process.QWEvent*process.vectMonW)
 
 process.schedule = cms.Schedule(
-	process.path2_3_2_3,
+	process.pathSC,
+	process.path
 )

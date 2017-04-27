@@ -7,6 +7,7 @@ PbPb2015
 PbPb2015Pix
 PbPb2015_cumu
 pPb
+*.log
 test/*
 !test/qw*.py
 !test/crab_*.py
