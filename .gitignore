@@ -19,3 +19,4 @@ runConfig/*
 !runConfig/run*.sh
 *.pyc
 tmp/
+CrabArea/
