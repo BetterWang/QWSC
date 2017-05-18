@@ -67,7 +67,7 @@ process.AftBurner.modv2 = cms.InputTag("fEllP_8pct_v2")
 process.AftBurner.modv3 = cms.InputTag("0.0")
 process.AftBurner.fluct_v3 = cms.double(0.0)
 #process.AftBurner.modv3 = cms.InputTag("pBG_2pct_v3")
-process.AftBurner.modmethod = cms.int32(2)
+process.AftBurner.modmethod = cms.int32(1)
 
 process.pgen = cms.Sequence(cms.SequencePlaceholder("randomEngineStateProducer")+process.AfterBurner+process.GeneInfo)
 
@@ -230,6 +230,8 @@ process.TFileService = cms.Service("TFileService",
 
 process.QWEvent = cms.EDProducer("QWGenEventProducer",
 		trackSrc  = cms.untracked.InputTag("genParticles"),
+		Etamin    = cms.untracked.double(0.),
+		Etamax    = cms.untracked.double(2.4),
 		isPrompt  = cms.untracked.bool(False)
 		)
 

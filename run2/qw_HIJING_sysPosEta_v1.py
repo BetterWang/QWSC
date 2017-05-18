@@ -230,6 +230,8 @@ process.TFileService = cms.Service("TFileService",
 
 process.QWEvent = cms.EDProducer("QWGenEventProducer",
 		trackSrc  = cms.untracked.InputTag("genParticles"),
+		Etamin    = cms.untracked.double(0.),
+		Etamax    = cms.untracked.double(2.4),
 		isPrompt  = cms.untracked.bool(False)
 		)
 

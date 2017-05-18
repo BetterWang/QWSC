@@ -104,10 +104,10 @@ process.QWRotAccHole = cms.EDAnalyzer("QWEventAccAnalyzer",
 
 
 process.QWSC2 = cms.EDAnalyzer('QWSC',
-		trackEta = cms.untracked.InputTag("QWEvent", "eta"),
-		trackPt = cms.untracked.InputTag("QWEvent", "pt"),
-		trackPhi = cms.untracked.InputTag("QWEvent", "phi"),
-		trackWeight = cms.untracked.InputTag("QWEvent", "weight"),
+		trackEta = cms.untracked.InputTag("QWEventAcc", "eta"),
+		trackPt = cms.untracked.InputTag("QWEventAcc", "pt"),
+		trackPhi = cms.untracked.InputTag("QWEventAcc", "phi"),
+		trackWeight = cms.untracked.InputTag("QWEventAcc", "weight"),
 		vertexZ = cms.untracked.InputTag("QWEvent", "vz"),
 		centrality = cms.untracked.InputTag("Noff"),
 		minvz = cms.untracked.double(-15),
@@ -266,7 +266,6 @@ process.bFilter = cms.EDFilter("QWDoubleFilter",
 
 
 #process.load('PbPb_HIMB2_pixel_eff')
-
 process.generation_step   = cms.Path(process.pgen)
 
 process.pre_ana = cms.Sequence(process.QWHIEvent * process.bFilter * process.QWEvent * process.QWEventRot * process.QWEventAcc * process.Noff)
@@ -362,7 +361,7 @@ process.RAWSIMoutput_step = cms.EndPath(process.RAWSIMoutput)
 process.schedule = cms.Schedule(
     		process.generation_step,
 		process.ana,
-#		process.RAWSIMoutput_step
+		process.RAWSIMoutput_step
 )
 
 

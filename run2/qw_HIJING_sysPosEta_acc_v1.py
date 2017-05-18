@@ -104,10 +104,10 @@ process.QWRotAccHole = cms.EDAnalyzer("QWEventAccAnalyzer",
 
 
 process.QWSC2 = cms.EDAnalyzer('QWSC',
-		trackEta = cms.untracked.InputTag("QWEvent", "eta"),
-		trackPt = cms.untracked.InputTag("QWEvent", "pt"),
-		trackPhi = cms.untracked.InputTag("QWEvent", "phi"),
-		trackWeight = cms.untracked.InputTag("QWEvent", "weight"),
+		trackEta = cms.untracked.InputTag("QWEventAcc", "eta"),
+		trackPt = cms.untracked.InputTag("QWEventAcc", "pt"),
+		trackPhi = cms.untracked.InputTag("QWEventAcc", "phi"),
+		trackWeight = cms.untracked.InputTag("QWEventAcc", "weight"),
 		vertexZ = cms.untracked.InputTag("QWEvent", "vz"),
 		centrality = cms.untracked.InputTag("Noff"),
 		minvz = cms.untracked.double(-15),
@@ -230,6 +230,8 @@ process.TFileService = cms.Service("TFileService",
 
 process.QWEvent = cms.EDProducer("QWGenEventProducer",
 		trackSrc  = cms.untracked.InputTag("genParticles"),
+		Etamin    = cms.untracked.double(0.),
+		Etamax    = cms.untracked.double(2.4),
 		isPrompt  = cms.untracked.bool(False)
 		)
 
